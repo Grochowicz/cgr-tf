@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ $1 -lglut -lGL -lGLU -lm -Wfatal-errors && ./a.out
