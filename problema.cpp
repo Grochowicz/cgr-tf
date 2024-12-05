@@ -155,6 +155,44 @@ void draw_line(line l, color cor) {
     glVertex3f(l.a.x, l.a.y+wall_sz*da/2, 0.0f);
     glVertex3f(l.b.x, l.b.y-wall_sz*db/2, 0.0f);
     glVertex3f(l.b.x, l.b.y+wall_sz*db/2, 0.0f);
+
+    //maior
+    glVertex3f(l.a.x+0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2-0.007f, 0.0f);
+
+    glVertex3f(l.a.x+0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+
+    glVertex3f(l.a.x+0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x+0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2-0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2-0.007f, 0.0f);
+
+    glVertex3f(l.b.x+0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+
 }
 
 

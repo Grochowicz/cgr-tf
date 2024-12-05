@@ -4,8 +4,7 @@
 #include <math.h>
 #include <unistd.h>
 #include <algorithm>
-
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 #define debug(x...) cerr << "[" << #x << "] = [", _print(x), cerr << "]" << endl
@@ -77,7 +76,6 @@ const color cyan = color(0,1,1);
 const color magenta = color(1,0,1);
 const color yellow = color(1,1,0);
 
-vec2 target;
 vec2 camera(0,0);
 
 void draw_pixel(vec2 pos, color cor) {
@@ -100,18 +98,11 @@ void draw_circle(float x, float y, float r, color cor) {
 }
 
 void draw_line(line l, color cor) {
-    /*
-    vec2 p = l.a;
-    vec2 x = l.b-l.a;
-    for(float k=0;k<=1.0;k+=0.01f/x.length()) {
-        vec2 cur = p+x*k;
-        draw_pixel(cur,cor);
-    }
-    */
     glColor3f(cor.r, cor.g, cor.b);
     glVertex3f(l.a.x, l.a.y, 0.0f);
     glVertex3f(l.b.x, l.b.y, 0.0f);
 
+    //maior
     glVertex3f(l.a.x+0.007f, l.a.y, 0.0f);
     glVertex3f(l.b.x+0.007f, l.b.y, 0.0f);
     glVertex3f(l.a.x-0.007f, l.a.y, 0.0f);
@@ -121,23 +112,6 @@ void draw_line(line l, color cor) {
     glVertex3f(l.b.x, l.b.y+0.007f, 0.0f);
     glVertex3f(l.a.x, l.a.y-0.007f, 0.0f);
     glVertex3f(l.b.x, l.b.y-0.007f, 0.0f);
-}
-
-
-#define sq(x) ((x)*(x))
-
-void InitMap() {
-}
-
-
-// Function to handle mouse movement
-void mouseMove(int x, int y) {
-    // Convert mouse coordinates (screen space) to OpenGL coordinates (-1 to 1)
-    int windowWidth = glutGet(GLUT_WINDOW_WIDTH);
-    int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
-
-    target.x = (float)x / (float)windowWidth * 2.0f - 1.0f;   // Normalize to (-1, 1)
-    target.y = -((float)y / (float)windowHeight * 2.0f - 1.0f); // Invert Y axis
 }
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
@@ -154,8 +128,6 @@ void InitGL(int Width, int Height) {
     gluPerspective(45.0f,(GLfloat)Width/(GLfloat)Height,0.1f,100.0f);	// Calculate The Aspect Ratio Of The Window
 
     glMatrixMode(GL_MODELVIEW);
-
-    InitMap();
 }
 
 /* The function called when our window is resized (which shouldn't happen, because we're fullscreen) */
@@ -283,7 +255,6 @@ int main(int argc, char **argv) {
     glutReshapeFunc(&ReSizeGLScene);
     glutKeyboardFunc(&keyPressed);
 
-    glutPassiveMotionFunc(&mouseMove);
     InitGL(640, 480);
     glutMainLoop();  
 

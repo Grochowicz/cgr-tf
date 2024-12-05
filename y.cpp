@@ -4,8 +4,8 @@
 #include <math.h>
 #include <unistd.h>
 #include <algorithm>
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <assert.h>
 using namespace std;
 
 #define debug(x...) cerr << "[" << #x << "] = [", _print(x), cerr << "]" << endl
@@ -155,23 +155,43 @@ void draw_line(line l, color cor) {
     glVertex3f(l.a.x, l.a.y+wall_sz*da/2, 0.0f);
     glVertex3f(l.b.x, l.b.y-wall_sz*db/2, 0.0f);
     glVertex3f(l.b.x, l.b.y+wall_sz*db/2, 0.0f);
-}
 
+    //maior
+    glVertex3f(l.a.x+0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2-0.007f, 0.0f);
 
-#define sq(x) ((x)*(x))
+    glVertex3f(l.a.x+0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
 
-void InitMap() {
-}
+    glVertex3f(l.a.x+0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x+0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y-wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x-0.007f, l.a.y+wall_sz*da/2, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y-wall_sz*da/2+0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2-0.007f, 0.0f);
+    glVertex3f(l.a.x, l.a.y+wall_sz*da/2-0.007f, 0.0f);
 
-
-// Function to handle mouse movement
-void mouseMove(int x, int y) {
-    // Convert mouse coordinates (screen space) to OpenGL coordinates (-1 to 1)
-    int windowWidth = glutGet(GLUT_WINDOW_WIDTH);
-    int windowHeight = glutGet(GLUT_WINDOW_HEIGHT);
-
-    target.x = (float)x / (float)windowWidth * 2.0f - 1.0f;   // Normalize to (-1, 1)
-    target.y = -((float)y / (float)windowHeight * 2.0f - 1.0f); // Invert Y axis
+    glVertex3f(l.b.x+0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x+0.007f, l.b.y+wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x-0.007f, l.b.y-wall_sz*db/2, 0.0f);
+    glVertex3f(l.b.x, l.b.y-wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2+0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
+    glVertex3f(l.b.x, l.b.y+wall_sz*db/2-0.007f, 0.0f);
 }
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
@@ -188,8 +208,6 @@ void InitGL(int Width, int Height) {
     gluPerspective(45.0f,(GLfloat)Width/(GLfloat)Height,0.1f,100.0f);	// Calculate The Aspect Ratio Of The Window
 
     glMatrixMode(GL_MODELVIEW);
-
-    InitMap();
 }
 
 /* The function called when our window is resized (which shouldn't happen, because we're fullscreen) */
@@ -309,7 +327,6 @@ int main(int argc, char **argv) {
     glutReshapeFunc(&ReSizeGLScene);
     glutKeyboardFunc(&keyPressed);
 
-    glutPassiveMotionFunc(&mouseMove);
     InitGL(640, 480);
     glutMainLoop();  
 
